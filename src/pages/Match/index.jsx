@@ -1,18 +1,19 @@
 import React, { Fragment, useState } from 'react'
-import ok from 'Assets/images/Match/ok.png'
-import rules from 'Assets/images/Match/rules.png'
-import matching from 'Assets/images/Match/matching.png'
-import success from 'Assets/images/Match/success.png'
+import { withRouter } from 'react-router-dom'
+import ok from './images/ok.png'
+import rules from './images/rules.png'
+import matching from './images/matching.png'
+import success from './images/success.png'
 import './style.css'
 
-function Match() {
+function Match({ history }) {
 
   /*
    * status reference
    *  0: reading the rules
    *  1: matching
-   *  2: Match succeeded
-   *  3: Match failed
+   *  2: images succeeded
+   *  3: images failed
    */
   const [status, setStatus] = useState(0)
 
@@ -35,6 +36,9 @@ function Match() {
   }
 
   if (status === 2) {
+    setTimeout(() => {
+      history.push('/draw')
+    }, 2000)
     return (
       <div className='success-box'>
         <img className='success' src={success} alt="success"/>
@@ -44,4 +48,4 @@ function Match() {
   }
 }
 
-export default Match
+export default withRouter(Match)

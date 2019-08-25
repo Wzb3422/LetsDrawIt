@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const Login = lazy(() => import('./pages/Login'))
 const Match = lazy(() => import('./pages/Match'))
+const Draw = lazy(() => import('./pages/Draw'))
 const NoMatch = lazy(() => import('./pages/NoMatch'))
 
 function AppRouter() {
@@ -12,6 +13,7 @@ function AppRouter() {
         <Switch>
           <Route exact path='/' component={Login}/>
           <Route path='/match' component={Match}/>
+          <Route path='/draw' component={Draw}/>
           <Route component={NoMatch}/>
         </Switch>
       </Suspense>

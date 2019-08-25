@@ -1,9 +1,9 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import './style.css'
-import logo from 'Assets/images/Login/logo.png'
-import play from 'Assets/images/Login/play.png'
-import ipt from 'Assets/images/Login/ipt.png'
+import logo from './images/logo.png'
+import play from './images/play.png'
+import ipt from './images/ipt.png'
 
 function Login({ history }) {
 
