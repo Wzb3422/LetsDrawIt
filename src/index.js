@@ -2,10 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'reset.css/reset.css'
 import AppRouter from './AppRouter'
+import './index.css'
 
 function App() {
   return (
-    <AppRouter />
+    <div className='wrapper'>
+      <AppRouter />
+    </div>
   )
 }
 

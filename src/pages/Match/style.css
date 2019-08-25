@@ -1,0 +1,37 @@
+.rules-box {
+  width: 8rem;
+  position: relative;
+}
+
+.rules-box .rules {
+  width: 100%;
+}
+
+.rules-box .ok {
+  height: 1rem;
+  position: absolute;
+  bottom: .7rem;
+  right: 2.5rem;
+}
+
+.matching {
+  width: 7.6rem;
+  position: relative;
+  bottom: 1rem;
+}
+
+.success-box {
+  width: 7.6rem;
+  position: relative;
+}
+
+.success-box .success {
+  width: 100%;
+}
+
+.success-box .opponent {
+  position: absolute;
+  top: .95rem;
+  right: .8rem;
+  font-size: 22px;
+}

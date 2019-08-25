@@ -36,11 +36,14 @@ const commonConfig = {
       template: path.resolve(__dirname, '../src/index.html')
     }),
     new CopyPlugin([{
-        from: path.resolve(__dirname, '../src/assets'),
-        to: path.resolve(__dirname, '../dist/assets')
+        from: path.resolve(__dirname, '../src/static'),
+        to: path.resolve(__dirname, '../dist/static')
       }])
   ],
   resolve: {
+    alias: {
+      Assets: path.resolve(__dirname, '../src/assets')
+    },
     extensions: ['.js', '.jsx', '.jpg', '.png', '.json']
   }
 }
