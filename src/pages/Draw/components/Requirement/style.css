@@ -1,0 +1,44 @@
+.req-box {
+  height: 8.74rem;
+  width: 7.42rem;
+  background: url("./images/outline.png");
+  background-size: cover;
+  position: relative;
+}
+
+.req-box .req-head {
+  height: 1.2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.2rem;
+}
+
+.req-head .quote {
+  font-size: 18px;
+  padding-left: .6rem;
+}
+
+.req-head .count-down {
+  font-size: 18px;
+  padding-right: 1rem;
+}
+
+.req-bottom {
+  position: absolute;
+  bottom: 0;
+  height: 1.6rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.req-bottom .ques {
+  font-size: 18px;
+}
+
+.req-bottom .part {
+  font-size: 14px;
+  margin-top: 4px;
+}

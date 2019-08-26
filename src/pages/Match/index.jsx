@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import ok from './images/ok.png'
 import rules from './images/rules.png'
@@ -17,6 +17,19 @@ function Match({ history }) {
    */
   const [status, setStatus] = useState(0)
 
+  useEffect(() => {
+    if (status === 1) {
+      setTimeout(() => {
+        setStatus(status + 1)
+      }, 2000)
+    }
+    if (status === 2) {
+      setTimeout(() => {
+        history.push('/draw')
+      }, 2000)
+    }
+  }, [status])
+
   if (status === 0) {
     return (
       <div className='rules-box'>
@@ -27,18 +40,12 @@ function Match({ history }) {
   }
 
   if (status === 1) {
-    setTimeout(() => {
-      setStatus(status + 1)
-    }, 2000)
     return (
       <img className='matching' src={matching} alt="matching"/>
     )
   }
 
   if (status === 2) {
-    setTimeout(() => {
-      history.push('/draw')
-    }, 2000)
     return (
       <div className='success-box'>
         <img className='success' src={success} alt="success"/>
@@ -46,6 +53,7 @@ function Match({ history }) {
       </div>
     )
   }
+
 }
 
 export default withRouter(Match)
