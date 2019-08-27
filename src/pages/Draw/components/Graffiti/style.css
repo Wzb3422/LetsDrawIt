@@ -1,0 +1,101 @@
+.header {
+  height: 1.2rem;
+  width: 9rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header .round {
+  height: 1.2rem;
+}
+
+.header .remaining {
+  height: 1rem;
+  margin-top: .2rem;
+}
+
+.line {
+  width: 5rem;
+  margin-top: 1.4rem;
+}
+
+.draw-box {
+  background: url("./images/outline.png");
+  background-size: contain;
+  height: 360px;
+  width: 300px;
+}
+
+.toolbox {
+  height: 2.4rem;
+  width: 8rem;
+  margin-top: .4rem;
+  display: flex;
+}
+
+.toolbox .color-select {
+  height: 2.4rem;
+  width: 3.9rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.color-select li {
+  height: 1rem;
+  width: 1rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: .3rem;
+}
+
+.red {
+  background: url("./images/red.png");
+}
+
+.yellow {
+  background: url("./images/yellow.png");
+}
+
+.blue {
+  background: url("./images/blue.png");
+}
+
+.green {
+  background: url("./images/green.png");
+}
+
+.purple {
+  background: url("./images/purple.png");
+}
+
+.black {
+  background: url("./images/black.png");
+}
+
+.toolbox .action {
+  width: 4.1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.action .eraser {
+  height: 1rem;
+  width: 1rem;
+  background: url("./images/eraser.png") no-repeat;
+  background-size: contain;
+}
+
+.action .redo {
+  height: 1rem;
+  width: 1rem;
+  background: url("./images/redo.png") no-repeat;
+  background-size: contain;
+}
+
+#canvas {
+  margin-left: 6px;
+  margin-top: 6px;
+}
