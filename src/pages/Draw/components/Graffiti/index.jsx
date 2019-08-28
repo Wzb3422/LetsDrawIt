@@ -1,16 +1,20 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { withRouter } from 'react-router-dom'
 import round from './images/round.png'
-import remaining from './images/remaining.png'
 import line from './images/line.png'
 import './style.css'
 
-function Graffiti() {
+function Graffiti({ history }) {
 
   const canvasRef = React.createRef()
+  let canvas = null
   let ctx = null
+  let strDataUrl = ''
+
+  const [remainingTime, setRemainingTime] = useState(5)
 
   useEffect(() => {
-    const canvas = canvasRef.current
+    canvas = canvasRef.current
     ctx = canvas.getContext('2d');
     let width = canvas.width, height = canvas.height;
     if (window.devicePixelRatio) {
@@ -21,6 +25,7 @@ function Graffiti() {
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
     canvas.ontouchstart = function(e) {
+      e.preventDefault()
       console.log(e)
       let offsetX = canvas.offsetLeft
       let offsetY = canvas.offsetTop
@@ -43,6 +48,18 @@ function Graffiti() {
     ctx.strokeStyle = '#EC694C'
   }, [])
 
+  useEffect(() => {
+    const countDownId = window.setTimeout(() => {
+      setRemainingTime(remainingTime - 1)
+    }, 1000)
+    if (remainingTime === 0) {
+      history.push('/done')
+    }
+    return () => {
+      window.clearTimeout(countDownId)
+    }
+  }, [remainingTime])
+
   const changeColor = (newColor, lineWidth = 3) => {
     console.log(`变成${newColor}色！`)
     console.log(ctx)
@@ -51,7 +68,12 @@ function Graffiti() {
   }
 
   const clearCanvas = () => {
-    ctx.ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.clearRect(0, 0, canvas.height, canvas.width)
+  }
+
+  const saveCanvas = () => {
+    strDataUrl = canvas.toDataURL()
+    console.log(strDataUrl)
   }
 
   return (
@@ -59,7 +81,7 @@ function Graffiti() {
 
       <div className='header'>
         <img className='round' src={round} alt="round"/>
-        <img className='remaining' src={remaining} alt="remaining"/>
+        <div className='remaining'>{remainingTime}</div>
       </div>
 
       <img className='line' src={line} alt="line"/>
@@ -79,7 +101,7 @@ function Graffiti() {
         </ul>
         <div className='action'>
           <div className='eraser' onClick={() => changeColor('#fff', 5)}></div>
-          <div className='redo'></div>
+          <div className='redo' onClick={() => {clearCanvas()}}></div>
         </div>
       </div>
 
@@ -88,4 +110,4 @@ function Graffiti() {
   )
 }
 
-export default Graffiti
+export default withRouter(Graffiti)
