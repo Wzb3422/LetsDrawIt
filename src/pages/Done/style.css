@@ -1,3 +1,14 @@
 .done {
   width: 7rem;
+  height: 5rem;
+  background: url("./images/done.png") no-repeat;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+}
+
+.done .check {
+  height: 1rem;
+  margin-top: 3.3rem;
+  margin-right: .4rem;
 }

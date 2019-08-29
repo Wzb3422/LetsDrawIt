@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import done from './images/done.png'
+import React, { Fragment ,useState } from 'react'
+import check from './images/check.png'
 import './style.css'
 
 function Done() {
@@ -8,7 +8,17 @@ function Done() {
 
   if (status === 0) {
     return (
-      <img className='done' src={done} alt='done'/>
+      <div className='done'>
+        <img className='check' src={check} alt="check" onClick={() => {setStatus(1)}}/>
+      </div>
+    )
+  }
+
+  if (status === 1) {
+    return (
+      <Fragment>
+        <div>xxx和xxx的惊世之</div>
+      </Fragment>
     )
   }
 
