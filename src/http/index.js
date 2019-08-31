@@ -9,7 +9,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.interceptors.request.use(
   config => {
     const token = localStorage.getItem('token')
-    token && (config.headers.Authorization = `Bearer ${token}`)
+    token && (config.headers.Authorization = token)
     return config
   },
   error => {
@@ -31,21 +31,20 @@ axios.interceptors.response.use(
     if (status) {
       switch (status) {
         case 401:
-          message.warning('未登录')
+          window.alert('未登录')
           window.location.pathname = '/login'
           break
         case 403:
           window.localStorage.clear()
           window.location.pathname = '/login'
-          message.warning('登陆过期')
+          window.alert('登陆过期')
           break
         case 404:
           window.location.pathname = '/login'
-          message.warning('网络请求目标不存在')
+          window.alert('网络请求目标不存在')
           break
         default:
-          message.warning(error.response.data.message)
-        // window.location.pathname = '/'
+          window.alert(error.response.data.message)
       }
     }
     return Promise.reject(error.response);

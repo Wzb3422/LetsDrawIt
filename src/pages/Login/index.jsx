@@ -4,6 +4,7 @@ import './style.css'
 import logo from './images/logo.png'
 import play from './images/play.png'
 import ipt from './images/ipt.png'
+import toast from '../../lib/toast'
 
 function Login({ history }) {
 
@@ -19,7 +20,7 @@ function Login({ history }) {
         <input className='ipt ipt-name' type="text"/>
         <input className='ipt ipt-username' type="text"/>
       </div>
-      <img className='play' src={play} alt="play" onClick={onPlay} />
+      <img className='play' src={play} alt="play" onClick={toast} />
     </div>
   )
 }
