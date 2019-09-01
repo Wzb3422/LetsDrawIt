@@ -20,7 +20,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   res => {
     if (res.status === 200) {
-      res.data.status ? message.info(res.data.message) : message.warning(res.data.message)
+      !res.data.status && window.alert(res.data.message)
       return Promise.resolve(res)
     } else {
       return Promise.reject(res)
@@ -32,7 +32,7 @@ axios.interceptors.response.use(
       switch (status) {
         case 401:
           window.alert('未登录')
-          window.location.pathname = '/login'
+          window.location.pathname = '/'
           break
         case 403:
           window.localStorage.clear()
