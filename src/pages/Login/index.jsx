@@ -12,15 +12,15 @@ function Login({ history }) {
   const [name, setName] = useState('')
 
   const onPlay = () => {
-    // post('/api/auth',{
-    //   student_id: studentId,
-    //   name
-    // }).then(res => {
-    //   console.log(res)
-    // }).catch(err => {
-    //   throw new Error(err)
-    // })
-    history.push('/match')
+    post('/api/auth',{
+      student_id: studentId,
+      name
+    }).then(res => {
+      localStorage.setItem('token', res.data.token)
+      history.push('/match')
+    }).catch(err => {
+      throw new Error(err)
+    })
   }
 
   return (

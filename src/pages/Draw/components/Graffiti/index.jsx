@@ -7,15 +7,13 @@ import './style.css'
 function Graffiti({ history }) {
 
   const canvasRef = React.createRef()
-  let canvas = null
-  let ctx = null
-  let strDataUrl = ''
+  const [strDataUrl, setStrDataUrl] = useState('')
 
-  const [remainingTime, setRemainingTime] = useState(5)
+  const [remainingTime, setRemainingTime] = useState(30)
 
   useEffect(() => {
-    canvas = canvasRef.current
-    ctx = canvas.getContext('2d');
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d');
     let width = canvas.width, height = canvas.height;
     if (window.devicePixelRatio) {
       canvas.style.width = width + "px";
@@ -61,6 +59,7 @@ function Graffiti({ history }) {
   }, [remainingTime])
 
   const changeColor = (newColor, lineWidth = 3) => {
+    const ctx = canvasRef.current.getContext('2d')
     console.log(`变成${newColor}色！`)
     console.log(ctx)
     ctx.lineWidth = lineWidth
@@ -68,11 +67,13 @@ function Graffiti({ history }) {
   }
 
   const clearCanvas = () => {
+    const ctx = canvasRef.current.getContext('2d')
     ctx.clearRect(0, 0, canvas.height, canvas.width)
   }
 
   const saveCanvas = () => {
-    strDataUrl = canvas.toDataURL()
+    const canvas = canvasRef.current
+    setStrDataUrl(canvas.toDataURL())
     console.log(strDataUrl)
   }
 
