@@ -36,12 +36,12 @@ axios.interceptors.response.use(
           break
         case 403:
           window.localStorage.clear()
-          window.location.pathname = '/login'
+          window.location.pathname = '/'
           window.alert('登陆过期')
           break
         case 404:
-          window.location.pathname = '/login'
-          window.alert('网络请求目标不存在')
+          // window.location.pathname = '/'
+          // window.alert('网络请求目标不存在')
           break
         default:
           window.alert(error.response.data.message)

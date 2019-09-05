@@ -17,7 +17,8 @@ function Done() {
   if (status === 1) {
     return (
       <Fragment>
-        <div>xxx和xxx的惊世之</div>
+        <div>xxx和xxx的惊世之作</div>
+        <div>诞生了</div>
       </Fragment>
     )
   }

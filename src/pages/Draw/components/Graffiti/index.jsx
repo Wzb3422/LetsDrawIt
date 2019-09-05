@@ -67,8 +67,11 @@ function Graffiti({ history }) {
   }
 
   const clearCanvas = () => {
-    const ctx = canvasRef.current.getContext('2d')
-    ctx.clearRect(0, 0, canvas.height, canvas.width)
+    let isToClear = window.confirm('你确定清除画布吗？')
+    if (isToClear) {
+      const ctx = canvasRef.current.getContext('2d')
+      ctx.clearRect(0, 0, canvas.height, canvas.width)
+    }
   }
 
   const saveCanvas = () => {
