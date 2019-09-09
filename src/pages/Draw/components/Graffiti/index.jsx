@@ -7,7 +7,6 @@ import './style.css'
 function Graffiti({ history }) {
 
   const canvasRef = React.createRef()
-  const [strDataUrl, setStrDataUrl] = useState('')
 
   const [remainingTime, setRemainingTime] = useState(30)
 
@@ -51,6 +50,7 @@ function Graffiti({ history }) {
       setRemainingTime(remainingTime - 1)
     }, 1000)
     if (remainingTime === 0) {
+      // Promise async upload image
       history.push('/done')
     }
     return () => {
@@ -76,8 +76,7 @@ function Graffiti({ history }) {
 
   const saveCanvas = () => {
     const canvas = canvasRef.current
-    setStrDataUrl(canvas.toDataURL())
-    console.log(strDataUrl)
+    console.log(canvas.toDataURL())
   }
 
   return (
@@ -105,7 +104,7 @@ function Graffiti({ history }) {
         </ul>
         <div className='action'>
           <div className='eraser' onClick={() => changeColor('#fff', 5)}></div>
-          <div className='redo' onClick={() => {clearCanvas()}}></div>
+          <div className='redo' onClick={saveCanvas}></div>
         </div>
       </div>
 

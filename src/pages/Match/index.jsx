@@ -19,24 +19,22 @@ function Match({ history }) {
 
   const [status, setStatus] = useState(0)
   const [socket, setSocket] = useState(null)
+  const [opponent, setOpponent] = useState('')
 
   useEffect(() => {
 
     if (status === 0) {
-      setSocket(webSocket('http://localhost:3000'))
+      setSocket(webSocket('http://101.132.107.146'))
     }
 
     if (status === 1) {
-
+      console.log('开始匹配')
     }
 
     if (status === 2) {
       setTimeout(() => {
         history.push('/draw')
       }, 2000)
-    }
-    return () => {
-      socket.close()
     }
   }, [status])
 
@@ -54,13 +52,15 @@ function Match({ history }) {
       console.log(`Ws connected as id ${socket.id}`)
     })
     socket.on('join', res => {
-      console.log(res)
+      if (res.message === '进入房间成功') {
+        setStatus(1)
+      }
     })
     socket.on('match', res => {
-      console.log(res)
-    })
-    socket.on('getMessage', message => {
-      console.log(message)
+      if (res.message === '匹配成功') {
+        setOpponent(res.data.another_user_name)
+        setStatus(2)
+      }
     })
   }
 
@@ -92,7 +92,7 @@ function Match({ history }) {
     return (
       <div className='success-box'>
         <img className='success' src={success} alt="success"/>
-        <div className='opponent'>小家园啊</div>
+        <div className='opponent'>{opponent}</div>
       </div>
     )
   }
