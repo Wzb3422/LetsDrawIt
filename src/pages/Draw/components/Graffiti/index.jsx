@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
+import { post } from "../../../../http";
 import round from './images/round.png'
 import line from './images/line.png'
 import './style.css'
@@ -23,7 +24,6 @@ function Graffiti({ history }) {
     }
     canvas.ontouchstart = function(e) {
       e.preventDefault()
-      console.log(e)
       let offsetX = canvas.offsetLeft
       let offsetY = canvas.offsetTop
       let x = e.touches[0].clientX - offsetX
@@ -50,8 +50,7 @@ function Graffiti({ history }) {
       setRemainingTime(remainingTime - 1)
     }, 1000)
     if (remainingTime === 0) {
-      // Promise async upload image
-      history.push('/done')
+      saveCanvas()
     }
     return () => {
       window.clearTimeout(countDownId)
@@ -60,8 +59,6 @@ function Graffiti({ history }) {
 
   const changeColor = (newColor, lineWidth = 3) => {
     const ctx = canvasRef.current.getContext('2d')
-    console.log(`变成${newColor}色！`)
-    console.log(ctx)
     ctx.lineWidth = lineWidth
     ctx.strokeStyle = newColor
   }
@@ -76,7 +73,14 @@ function Graffiti({ history }) {
 
   const saveCanvas = () => {
     const canvas = canvasRef.current
-    console.log(canvas.toDataURL())
+    post('/api/room/upload', {
+      img: canvas.toDataURL(),
+      format: 'png'
+    }).then(res => {
+      history.push(`/done?imgId=${res.data.picture_id}`)
+    }).catch(err => {
+      throw new Error(err)
+    })
   }
 
   return (

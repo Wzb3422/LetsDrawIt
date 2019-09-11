@@ -12,3 +12,20 @@
   margin-top: 3.3rem;
   margin-right: .4rem;
 }
+
+.title {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.sub-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.outline {
+  width: 8rem;
+  height: 9.6rem;
+  background: url("./images/outline.png") no-repeat;
+  background-size: contain;
+}
