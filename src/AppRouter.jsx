@@ -20,8 +20,7 @@ function AppRouter() {
         </Switch>
       </Suspense>
     </Router>
-    )
-
+  )
 }
 
 export default AppRouter
