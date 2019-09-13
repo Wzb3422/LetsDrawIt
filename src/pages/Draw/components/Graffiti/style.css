@@ -10,8 +10,15 @@
 }
 
 .header .remaining {
-  height: 1rem;
+  height: .8rem;
+  width: 1.8rem;
+  padding-left: 2rem;
+  padding-top: .2rem;
   margin-top: .2rem;
+  font-size: 20px;
+  background: url("./images/remaining.png") no-repeat;
+  background-size: contain;
+  text-align: center;
 }
 
 .line {

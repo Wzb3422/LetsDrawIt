@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import ok from './images/ok.png'
 import rules from './images/rules.png'
-import matching from './images/matching.png'
 import success from './images/success.png'
 import './style.css'
+import Matching from './components/Matching'
+import webSocket from 'socket.io-client'
 
 function Match({ history }) {
 
@@ -15,14 +16,21 @@ function Match({ history }) {
    *  2: images succeeded
    *  3: images failed
    */
+
   const [status, setStatus] = useState(0)
+  const [socket, setSocket] = useState(null)
+  const [opponent, setOpponent] = useState('')
 
   useEffect(() => {
-    if (status === 1) {
-      setTimeout(() => {
-        setStatus(status + 1)
-      }, 2000)
+
+    if (status === 0) {
+      setSocket(webSocket('http://101.132.107.146'))
     }
+
+    if (status === 1) {
+      console.log('开始匹配')
+    }
+
     if (status === 2) {
       setTimeout(() => {
         history.push('/draw')
@@ -30,18 +38,53 @@ function Match({ history }) {
     }
   }, [status])
 
+  // WebSocket
+  useEffect(() => {
+    if (socket) {
+      console.log('connected')
+      console.log(socket)
+      wsInit()
+    }
+  }, [socket])
+
+  const wsInit = () => {
+    socket.on('connect', () => {
+      console.log(`Ws connected as id ${socket.id}`)
+    })
+    socket.on('join', res => {
+      if (res.message === '进入房间成功') {
+        setStatus(1)
+      }
+    })
+    socket.on('match', res => {
+      if (res.message === '匹配成功') {
+        setOpponent(res.data.another_user_name)
+        setStatus(2)
+      }
+    })
+  }
+
+  const onGotItClick = () => {
+    console.log('hello world')
+    socket.emit('join', `{
+      "token": "${localStorage.getItem('token')}"
+    }`, data => {
+      console.log(data)
+    })
+  }
+
   if (status === 0) {
     return (
       <div className='rules-box'>
         <img className='rules' src={rules} alt="rules"/>
-        <img className='ok' src={ok} alt="ok" onClick={() => {setStatus(status + 1)}} />
+        <img className='ok' src={ok} alt="ok" onClick={onGotItClick} />
       </div>
     )
   }
 
   if (status === 1) {
     return (
-      <img className='matching' src={matching} alt="matching"/>
+      <Matching />
     )
   }
 
@@ -49,7 +92,7 @@ function Match({ history }) {
     return (
       <div className='success-box'>
         <img className='success' src={success} alt="success"/>
-        <div className='opponent'>小家园啊</div>
+        <div className='opponent'>{opponent}</div>
       </div>
     )
   }

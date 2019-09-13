@@ -1,17 +1,19 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { withRouter } from 'react-router-dom'
+import { post } from "../../../../http";
 import round from './images/round.png'
-import remaining from './images/remaining.png'
 import line from './images/line.png'
 import './style.css'
 
-function Graffiti() {
+function Graffiti({ history }) {
 
   const canvasRef = React.createRef()
-  let ctx = null
+
+  const [remainingTime, setRemainingTime] = useState(30)
 
   useEffect(() => {
     const canvas = canvasRef.current
-    ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
     let width = canvas.width, height = canvas.height;
     if (window.devicePixelRatio) {
       canvas.style.width = width + "px";
@@ -21,7 +23,7 @@ function Graffiti() {
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
     canvas.ontouchstart = function(e) {
-      console.log(e)
+      e.preventDefault()
       let offsetX = canvas.offsetLeft
       let offsetY = canvas.offsetTop
       let x = e.touches[0].clientX - offsetX
@@ -43,15 +45,42 @@ function Graffiti() {
     ctx.strokeStyle = '#EC694C'
   }, [])
 
+  useEffect(() => {
+    const countDownId = window.setTimeout(() => {
+      setRemainingTime(remainingTime - 1)
+    }, 1000)
+    if (remainingTime === 0) {
+      saveCanvas()
+    }
+    return () => {
+      window.clearTimeout(countDownId)
+    }
+  }, [remainingTime])
+
   const changeColor = (newColor, lineWidth = 3) => {
-    console.log(`变成${newColor}色！`)
-    console.log(ctx)
+    const ctx = canvasRef.current.getContext('2d')
     ctx.lineWidth = lineWidth
     ctx.strokeStyle = newColor
   }
 
   const clearCanvas = () => {
-    ctx.ctx.clearRect(0,0,canvas.width,canvas.height);
+    let isToClear = window.confirm('你确定清除画布吗？')
+    if (isToClear) {
+      const ctx = canvasRef.current.getContext('2d')
+      ctx.clearRect(0, 0, canvas.height, canvas.width)
+    }
+  }
+
+  const saveCanvas = () => {
+    const canvas = canvasRef.current
+    post('/api/room/upload', {
+      img: canvas.toDataURL(),
+      format: 'png'
+    }).then(res => {
+      history.push(`/done?imgId=${res.data.picture_id}`)
+    }).catch(err => {
+      throw new Error(err)
+    })
   }
 
   return (
@@ -59,7 +88,7 @@ function Graffiti() {
 
       <div className='header'>
         <img className='round' src={round} alt="round"/>
-        <img className='remaining' src={remaining} alt="remaining"/>
+        <div className='remaining'>{remainingTime}</div>
       </div>
 
       <img className='line' src={line} alt="line"/>
@@ -79,7 +108,7 @@ function Graffiti() {
         </ul>
         <div className='action'>
           <div className='eraser' onClick={() => changeColor('#fff', 5)}></div>
-          <div className='redo'></div>
+          <div className='redo' onClick={saveCanvas}></div>
         </div>
       </div>
 
@@ -88,4 +117,4 @@ function Graffiti() {
   )
 }
 
-export default Graffiti
+export default withRouter(Graffiti)

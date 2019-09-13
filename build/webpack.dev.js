@@ -4,6 +4,7 @@ const path = require('path')
 
 const devConfig = merge(commonConfig, {
   mode: 'development',
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, '../dist'),
     host: '0.0.0.0',
