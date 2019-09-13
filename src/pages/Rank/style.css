@@ -1,0 +1,30 @@
+.header {
+  /*height: 4rem;*/
+  width: 9rem;
+  display: flex;
+}
+
+.header .logo {
+  width: 5rem;
+  height: 3.74rem;
+}
+
+.header .header-right {
+  width: 4rem;
+}
+
+.hearts-box {
+  box-sizing: border-box;
+  display: flex;
+  width: 4rem;
+  padding-left: .62rem;
+}
+
+.hearts-box .heart {
+  width: 2.3rem;
+}
+
+.hearts-box .num {
+  height: 1.08rem;
+  margin-left: .2rem;
+}

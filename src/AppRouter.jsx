@@ -5,6 +5,7 @@ const Login = lazy(() => import('./pages/Login'))
 const Match = lazy(() => import('./pages/Match'))
 const Draw = lazy(() => import('./pages/Draw'))
 const Done = lazy(() => import('./pages/Done'))
+const Rank = lazy(() => import('./pages/Rank'))
 const NoMatch = lazy(() => import('./pages/NoMatch'))
 
 function AppRouter() {
@@ -16,6 +17,7 @@ function AppRouter() {
           <Route path='/match' component={Match}/>
           <Route path='/draw' component={Draw}/>
           <Route path='/done' component={Done}/>
+          <Route path='/rank' component={Rank}/>
           <Route component={NoMatch}/>
         </Switch>
       </Suspense>
