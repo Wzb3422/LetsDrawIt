@@ -24,8 +24,10 @@
 }
 
 .outline {
-  width: 8rem;
-  height: 9.6rem;
+  box-sizing: border-box;
+  height: 360px;
+  width: 300px;
   background: url("./images/outline.png") no-repeat;
   background-size: contain;
+  padding: 6px 0 0 6px;
 }
