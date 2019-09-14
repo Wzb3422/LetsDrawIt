@@ -31,3 +31,9 @@
   background-size: contain;
   padding: 6px 0 0 6px;
 }
+
+.check-others {
+  height: 1rem;
+  margin-top: 1rem;
+  margin-right: .4rem;
+}

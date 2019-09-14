@@ -59,6 +59,7 @@ function Match({ history }) {
     socket.on('match', res => {
       if (res.message === '匹配成功') {
         setOpponent(res.data.another_user_name)
+        socket.close()
         setStatus(2)
       }
     })

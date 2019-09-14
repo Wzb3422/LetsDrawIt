@@ -1,30 +1,41 @@
 .header {
-  /*height: 4rem;*/
   width: 9rem;
   display: flex;
 }
 
 .header .logo {
-  width: 5rem;
-  height: 3.74rem;
+  width: 4rem;
+  height: 3.4rem;
 }
 
 .header .header-right {
-  width: 4rem;
+  width: 5rem;
 }
 
 .hearts-box {
   box-sizing: border-box;
   display: flex;
   width: 4rem;
-  padding-left: .62rem;
 }
 
 .hearts-box .heart {
-  width: 2.3rem;
+  height: .8rem;
 }
 
 .hearts-box .num {
-  height: 1.08rem;
+  height: .8rem;
   margin-left: .2rem;
+}
+
+.header-right .text {
+  width: 4rem;
+}
+
+.rankings-box {
+  width: 9rem;
+  height: 12rem;
+  margin-top: .8rem;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
 }

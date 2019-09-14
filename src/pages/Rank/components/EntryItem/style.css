@@ -1,0 +1,12 @@
+.outline {
+  background: url("./images/outline.png") no-repeat;
+  background-size: contain;
+  height: 3.5rem;
+  width: 2.8rem;
+  margin-right: .3rem;
+  margin-top: .3rem;
+}
+
+.outline:nth-child(3n) {
+  margin-right: 0;
+}
