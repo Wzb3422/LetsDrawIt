@@ -5,8 +5,24 @@
   width: 2.8rem;
   margin-right: .3rem;
   margin-top: .3rem;
+  position: relative;
 }
 
 .outline:nth-child(3n) {
   margin-right: 0;
+}
+
+.item-heart {
+  position: absolute;
+  top: 7px;
+  right: 15px;
+  height: .33rem;
+  transition: all .6s ease-in;
+  -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+  filter: grayscale(100%);
+}
+
+.gray-heart {
+  -webkit-filter: grayscale(0); /* Chrome, Safari, Opera */
+  filter: grayscale(0);
 }

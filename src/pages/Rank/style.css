@@ -15,25 +15,28 @@
 .hearts-box {
   box-sizing: border-box;
   display: flex;
-  width: 4rem;
+  justify-content: flex-end;
+  width: 5rem;
+  margin-top: 1.6rem;
 }
 
 .hearts-box .heart {
-  height: .8rem;
+  height: .7rem;
 }
 
 .hearts-box .num {
-  height: .8rem;
+  height: .7rem;
   margin-left: .2rem;
 }
 
 .header-right .text {
   width: 4rem;
+  padding-left: 1rem;
 }
 
 .rankings-box {
   width: 9rem;
-  height: 12rem;
+  height: 11.4rem;
   margin-top: .8rem;
   display: flex;
   flex-wrap: wrap;
