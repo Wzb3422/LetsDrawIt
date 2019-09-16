@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import './style.css'
 import EntryItem from './components/EntryItem'
 import { get } from '../../http'
 import logo from './images/logo.png'
@@ -10,7 +11,6 @@ import img3 from './images/3.png'
 import img4 from './images/4.png'
 import img5 from './images/5.png'
 import text from './images/text.png'
-import './style.css'
 
 function Rank() {
 
@@ -31,19 +31,6 @@ function Rank() {
     })
   }, [page])
 
-  const likeClick = (itemId) => {
-    console.log(itemId)
-  }
-
-  const itemClick = (itemId) => {
-    if (remainingLikes > 0) {
-      likeClick(itemId)
-      setRemainingLikes(remainingLikes)
-    } else {
-      alert('点赞用完了')
-    }
-  }
-
   return (
     <Fragment>
       <div className='header'>
@@ -51,7 +38,9 @@ function Rank() {
         <div className='header-right'>
           <div className='hearts-box'>
             <img className='heart' src={heart} alt="heart"/>
-            <img className='num' src={numImgArr[remainingLikes]} alt="one"/>
+            <div className='num-box'>
+              <img className='num' src={numImgArr[remainingLikes]} alt="one"/>
+            </div>
           </div>
           <img className='text' src={text} alt="text"/>
         </div>
@@ -62,7 +51,7 @@ function Rank() {
             return (
               <EntryItem
                 key={item.id}
-                itemId={item.id}
+                item={item}
                 remainingLikes={remainingLikes}
                 setRemainingLikes={setRemainingLikes}
               />

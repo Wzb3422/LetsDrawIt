@@ -3,7 +3,7 @@ import heart from './images/heart.png'
 import 'animate.css/animate.min.css'
 import './style.css'
 
-function EntryItem({ itemId, setRemainingLikes, remainingLikes }) {
+function EntryItem({ item, setRemainingLikes, remainingLikes }) {
 
   const [isActivated, setIsActivated] = useState(false)
 
@@ -11,7 +11,6 @@ function EntryItem({ itemId, setRemainingLikes, remainingLikes }) {
   const itemGreyHeartClazz = 'item-heart animated rubberBand'
 
   const toggleLike = () => {
-
     if (isActivated) {
       // Liked
       setRemainingLikes(remainingLikes + 1)
@@ -30,8 +29,10 @@ function EntryItem({ itemId, setRemainingLikes, remainingLikes }) {
   }
 
   return (
-    <div className='outline' onClick={toggleLike}>
+    <div className='rank-outline' onClick={toggleLike}>
       <img className={isActivated ? itemRedHeartClazz : itemGreyHeartClazz} src={heart} alt="heart"/>
+      <img className='rank-img' src={`https://draw2019.oss-cn-shanghai.aliyuncs.com/picture/${item.top_file_name}`} alt="topImg"/>
+      <img className='rank-img' src={`https://draw2019.oss-cn-shanghai.aliyuncs.com/picture/${item.bottom_file_name}`} alt="bottomImg"/>
     </div>
   )
 }

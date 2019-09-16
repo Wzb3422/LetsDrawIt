@@ -1,6 +1,7 @@
 .header {
   width: 9rem;
   display: flex;
+  height: 3.4rem;
 }
 
 .header .logo {
@@ -24,9 +25,15 @@
   height: .7rem;
 }
 
+.hearts-box .num-box {
+  height: .7rem;
+  width: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
 .hearts-box .num {
   height: .7rem;
-  margin-left: .2rem;
 }
 
 .header-right .text {

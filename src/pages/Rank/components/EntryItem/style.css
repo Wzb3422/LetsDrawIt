@@ -1,14 +1,16 @@
-.outline {
+.rank-outline {
   background: url("./images/outline.png") no-repeat;
   background-size: contain;
-  height: 3.5rem;
-  width: 2.8rem;
+  height: 131px;
+  width: 105px;
   margin-right: .3rem;
   margin-top: .3rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-.outline:nth-child(3n) {
+.rank-outline:nth-child(3n) {
   margin-right: 0;
 }
 
@@ -25,4 +27,9 @@
 .gray-heart {
   -webkit-filter: grayscale(0); /* Chrome, Safari, Opera */
   filter: grayscale(0);
+}
+
+.rank-outline .rank-img {
+  height: 49%;
+  width: 96px;
 }
