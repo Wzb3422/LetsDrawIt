@@ -11,3 +11,12 @@
   align-items: center;
   justify-content: center;
 }
+
+@font-face {
+  font-family: "hugo";
+  src: url("./font/hugo.ttf");
+}
+
+.hugo {
+  font-family: "hugo";
+}

@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { post } from "../../../../http";
+import grey from './images/grey.png'
 import round from './images/round.png'
 import line from './images/line.png'
 import './style.css'
@@ -10,6 +11,7 @@ function Graffiti({ history }) {
   const canvasRef = React.createRef()
 
   const [remainingTime, setRemainingTime] = useState(30)
+  const [isTop, setIsTop] = useState(true)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -94,7 +96,8 @@ function Graffiti({ history }) {
       <img className='line' src={line} alt="line"/>
 
       <div className='draw-box'>
-        <canvas ref={canvasRef} id='canvas' width="275" height="345"/>
+        <canvas ref={canvasRef} id='canvas' width="280" height="180"/>
+        <img src={grey} alt="grey"/>
       </div>
 
       <div className='toolbox'>

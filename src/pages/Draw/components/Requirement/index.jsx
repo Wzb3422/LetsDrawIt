@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import coder from './images/coder.png'
 import './style.css'
 
 function Requirement({ setStatus }) {
@@ -19,12 +20,15 @@ function Requirement({ setStatus }) {
   return (
     <div className='req-box'>
       <div className='req-head'>
-        <span className='quote'>请画：</span>
-        <span className='count-down'>{countDown}</span>
+        <span className='quote hugo'>请画：</span>
+        <span className='count-down hugo'>{countDown}</span>
       </div>
-      <div className='req-bottom'>
-        <div className='ques'>「一只程序员」 </div>
-        <div className='part'>的上半部</div>
+      <div className='req-img'>
+        <img src={coder} alt="coder"/>
+      </div>
+      <div className='req-bottom hugo'>
+        <div className='ques hugo'>「一只程序员」 </div>
+        <div className='part hugo'>的上半部</div>
       </div>
     </div>
   )

@@ -31,7 +31,9 @@
 
 .success-box .opponent {
   position: absolute;
+  text-align: center;
   top: .95rem;
   right: .8rem;
   font-size: 22px;
+  width: 2.2rem;
 }

@@ -4,6 +4,7 @@
   background: url("./images/outline.png");
   background-size: cover;
   position: relative;
+  font-family: "hugo";
 }
 
 .req-box .req-head {
@@ -11,6 +12,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   line-height: 1.2rem;
 }
 
@@ -22,6 +24,16 @@
 .req-head .count-down {
   font-size: 18px;
   padding-right: 1rem;
+}
+
+.req-img {
+  height: 5.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.req-img img {
+  height: 100%;
 }
 
 .req-bottom {

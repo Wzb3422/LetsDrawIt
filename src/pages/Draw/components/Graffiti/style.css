@@ -31,6 +31,18 @@
   background-size: contain;
   height: 360px;
   width: 300px;
+  padding-left: 6px;
+  padding-top: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.reversed-box {
+  flex-direction: column-reverse;
+}
+
+.draw-box img {
+  width: 280px;
 }
 
 .toolbox {
@@ -100,9 +112,4 @@
   width: 1rem;
   background: url("./images/redo.png") no-repeat;
   background-size: contain;
-}
-
-#canvas {
-  margin-left: 6px;
-  margin-top: 6px;
 }

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, lazy, Suspense } from 'react'
 import { withRouter } from 'react-router-dom'
 import ok from './images/ok.png'
 import rules from './images/rules.png'
 import success from './images/success.png'
 import './style.css'
-import Matching from './components/Matching'
 import webSocket from 'socket.io-client'
 
 function Match({ history }) {
@@ -84,8 +83,11 @@ function Match({ history }) {
   }
 
   if (status === 1) {
+    const Matching = lazy(() => import('./components/Matching'))
     return (
-      <Matching />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Matching />
+      </Suspense>
     )
   }
 
