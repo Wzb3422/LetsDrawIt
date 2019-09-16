@@ -1,0 +1,11 @@
+.list-item-box {
+  height: 200px;
+  width: 160px;
+  background: url("./images/item.png") no-repeat;
+  background-size: contain;
+  margin: 14px 10px 0 0;
+}
+
+.list-item-box:nth-child(7n) {
+  margin-right: 0;
+}

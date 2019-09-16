@@ -1,14 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import List from './pages/List'
 import 'reset.css/reset.css'
-import AppRouter from './AppRouter'
 import './index.css'
-import 'animate.css/animate.min.css'
 
 function App() {
   return (
     <div className='wrapper'>
-      <AppRouter />
+      <Router>
+        <Switch>
+          <Route exact path='/' component={List} />
+        </Switch>
+      </Router>
     </div>
   )
 }
