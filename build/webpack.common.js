@@ -28,6 +28,9 @@ const commonConfig = {
         options: {
           limit: 10000
         }
+      }, {
+        test: /\.ttf$/,
+        loader: 'file-loader',
       }
     ]
   },

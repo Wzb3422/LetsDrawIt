@@ -9,7 +9,7 @@ const List = () => {
 
   return (
     <div className='list-container'>
-      <div className='list-title'>Pick 你心中的 「优秀画作」</div>
+      <div className='list-title hugo'>Pick 你心中的 「优秀画作」</div>
       <div className='list-box'>
         <Suspense fallback={<div>Loading...</div>}>
           {

@@ -4,3 +4,12 @@
   background: url("./assets/images/bg.jpg") no-repeat;
   background-size: cover;
 }
+
+@font-face {
+  font-family: "hugo";
+  src: url("./assets/fonts/hugo.ttf") format("truetype");
+}
+
+.hugo {
+  font-family: "hugo";
+}
