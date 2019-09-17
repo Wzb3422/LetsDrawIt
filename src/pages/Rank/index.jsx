@@ -31,19 +31,6 @@ function Rank() {
     })
   }, [page])
 
-  const likeClick = (itemId) => {
-    console.log(itemId)
-  }
-
-  const itemClick = (itemId) => {
-    if (remainingLikes > 0) {
-      likeClick(itemId)
-      setRemainingLikes(remainingLikes)
-    } else {
-      alert('点赞用完了')
-    }
-  }
-
   return (
     <Fragment>
       <div className='header'>
@@ -62,7 +49,7 @@ function Rank() {
             return (
               <EntryItem
                 key={item.id}
-                itemId={item.id}
+                item={item}
                 remainingLikes={remainingLikes}
                 setRemainingLikes={setRemainingLikes}
               />

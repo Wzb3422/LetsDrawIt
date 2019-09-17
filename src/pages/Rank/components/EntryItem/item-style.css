@@ -1,4 +1,4 @@
-.outline {
+.item-outline {
   background: url("./images/outline.png") no-repeat;
   background-size: contain;
   height: 3.5rem;
@@ -6,10 +6,17 @@
   margin-right: .3rem;
   margin-top: .3rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-.outline:nth-child(3n) {
+.item-outline:nth-child(3n) {
   margin-right: 0;
+}
+
+.item-outline .item-img {
+  height: 49%;
+  width: 93%;
 }
 
 .item-heart {
