@@ -13,6 +13,7 @@ function Graffiti({ history }) {
   const [remainingTime, setRemainingTime] = useState(30)
   const [isTop, setIsTop] = useState(true)
 
+  // canvas
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d');
@@ -47,6 +48,7 @@ function Graffiti({ history }) {
     ctx.strokeStyle = '#EC694C'
   }, [])
 
+  // count down
   useEffect(() => {
     const countDownId = window.setTimeout(() => {
       setRemainingTime(remainingTime - 1)
@@ -58,6 +60,12 @@ function Graffiti({ history }) {
       window.clearTimeout(countDownId)
     }
   }, [remainingTime])
+
+  // position
+  useEffect(() => {
+    console.log()
+    window.location.pathname.split('?')
+  }, [])
 
   const changeColor = (newColor, lineWidth = 3) => {
     const ctx = canvasRef.current.getContext('2d')
@@ -95,9 +103,9 @@ function Graffiti({ history }) {
 
       <img className='line' src={line} alt="line"/>
 
-      <div className='draw-box'>
-        <canvas ref={canvasRef} id='canvas' width="280" height="180"/>
-        <img src={grey} alt="grey"/>
+      <div className={isTop ? 'draw-box' : 'draw-box reversed-box'}>
+        <canvas className={!isTop && 'bottom-canvas'} ref={canvasRef} id='canvas' width={isTop ? "280" : "280"} height={isTop ? "180" : "170"}/>
+        <img className={isTop ? 'img-for-top': 'img-for-bottom'} src={grey} alt="grey"/>
       </div>
 
       <div className='toolbox'>

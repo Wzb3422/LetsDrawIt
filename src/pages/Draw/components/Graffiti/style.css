@@ -41,8 +41,13 @@
   flex-direction: column-reverse;
 }
 
-.draw-box img {
+.draw-box .img-for-top {
   width: 280px;
+}
+
+.draw-box .img-for-bottom {
+  width: 280px;
+  margin-bottom: 6px;
 }
 
 .toolbox {
@@ -112,4 +117,8 @@
   width: 1rem;
   background: url("./images/redo.png") no-repeat;
   background-size: contain;
+}
+
+.bottom-canvas {
+  margin-bottom: 10px;
 }
