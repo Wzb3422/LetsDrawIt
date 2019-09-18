@@ -17,7 +17,11 @@ const List = () => {
 
   // xhr
   useEffect(() => {
-    axios.get('/api/like/rank')
+    axios.get('http://101.132.107.146/api/like/rank').then(res => {
+      console.log(res)
+    }).catch(err => {
+      throw new Error(err)
+    })
   })
 
   const arr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1,1 ,1 ,1 ,1 ,1 , 1, 1, 1,1 ,1 ,1 ,1 ,11, 1, 1,1 ,1 ,1 ,1 ,1 ,1]
