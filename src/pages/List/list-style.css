@@ -1,5 +1,5 @@
 .list-container {
-  height: 600px;
+  height: 700px;
   width: 1200px;
   margin: 0 auto;
   padding-top: 66px;
@@ -16,10 +16,14 @@
 }
 
 .list-box {
-  flex: 1;
+  height: 2100px;
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
   margin-top: 10px;
 }
 
+.end-button {
+  width: 220px;
+  margin: 20px auto;
+}

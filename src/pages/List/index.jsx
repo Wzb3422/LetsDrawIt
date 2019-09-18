@@ -1,9 +1,24 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
+import axios from 'axios'
+import end from './images/end.png'
+import io from 'socket.io-client'
 import './list-style.css'
 
 const ListItem = lazy(() => import('./ListItem/index.jsx'))
 
 const List = () => {
+
+  const [socket, setSocket] = useState(null)
+
+  // websocket
+  useEffect(() => {
+    setSocket(io('http://localhost:3000'))
+  }, [])
+
+  // xhr
+  useEffect(() => {
+    axios.get('/api/like/rank')
+  })
 
   const arr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1,1 ,1 ,1 ,1 ,1 , 1, 1, 1,1 ,1 ,1 ,1 ,11, 1, 1,1 ,1 ,1 ,1 ,1 ,1]
 
@@ -20,8 +35,8 @@ const List = () => {
             })
           }
         </Suspense>
-
       </div>
+      <img className='end-button' src={end} alt="end"/>
     </div>
   )
 }
