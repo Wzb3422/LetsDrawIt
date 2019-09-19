@@ -20,6 +20,7 @@ function Match({ history }) {
   const [socket, setSocket] = useState(null)
   const [opponent, setOpponent] = useState('')
   const [position, setPosition] = useState('')
+  const [quesId, setQuesId] = useState(0)
 
   useEffect(() => {
 
@@ -33,7 +34,7 @@ function Match({ history }) {
 
     if (status === 2) {
       setTimeout(() => {
-        history.push(`/draw?position=${position}`)
+        history.push(`/draw?position=${position}&quesId=${quesId}`)
       }, 2000)
     }
   }, [status])
@@ -60,6 +61,7 @@ function Match({ history }) {
       if (res.message === '匹配成功') {
         setOpponent(res.data.another_user_name)
         setPosition(res.data.position)
+        setQuesId(res.data.question)
         socket.close()
         setStatus(2)
       }

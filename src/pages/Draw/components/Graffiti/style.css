@@ -23,31 +23,30 @@
 
 .line {
   width: 5rem;
-  margin-top: 1.4rem;
+  margin-top: .1rem;
 }
 
 .draw-box {
   background: url("./images/outline.png");
-  background-size: contain;
-  height: 360px;
-  width: 300px;
+  background-size: 100% 100%;
+  height: 340px;
+  width: 320px;
   padding-left: 6px;
   padding-top: 6px;
-  display: flex;
-  flex-direction: column;
-}
-
-.reversed-box {
-  flex-direction: column-reverse;
 }
 
 .draw-box .img-for-top {
-  width: 280px;
+  width: 300px;
+  height: 140px;
+  position: relative;
+  top: 10px;
 }
 
 .draw-box .img-for-bottom {
-  width: 280px;
-  margin: 6px 0;
+  width: 300px;
+  height: 140px;
+  position: relative;
+  bottom: 150px;
 }
 
 .toolbox {
@@ -119,6 +118,13 @@
   background-size: contain;
 }
 
+.draw-ques {
+  height: .8rem;
+  margin-top: .5rem;
+  font-size: 22px;
+}
+
 .bottom-canvas {
-  margin-bottom: 10px;
+  position: relative;
+  top: 176px;
 }

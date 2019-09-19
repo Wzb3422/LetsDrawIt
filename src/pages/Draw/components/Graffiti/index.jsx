@@ -9,15 +9,17 @@ import './style.css'
 function Graffiti({ history }) {
 
   const canvasRef = React.createRef()
+  const quesList = ['一号', '二号', '三号', '四号']
 
-  const [remainingTime, setRemainingTime] = useState(300)
+  const [remainingTime, setRemainingTime] = useState(30)
   const [isTop, setIsTop] = useState(true)
+  const [question, setQuestion] = useState(0)
 
   // canvas
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d');
-    let width = canvas.width, height = canvas.height;
+    // let width = canvas.width, height = canvas.height;
     // if (window.devicePixelRatio) {
     //   canvas.style.width = width + "px";
     //   canvas.style.height = height + "px";
@@ -27,8 +29,8 @@ function Graffiti({ history }) {
     // }
     canvas.ontouchstart = function(e) {
       e.preventDefault()
-      let offsetX = canvas.offsetLeft
-      let offsetY = canvas.offsetTop
+      let offsetX = canvas.offsetLeft + 6
+      let offsetY = canvas.offsetTop + 6
       let x = e.touches[0].clientX - offsetX
       let y = e.touches[0].clientY - offsetY
       ctx.beginPath();
@@ -65,6 +67,8 @@ function Graffiti({ history }) {
   useEffect(() => {
     const params = (new URL(document.location)).searchParams
     const position = params.get("position")
+    const quesIndex = params.get("quesId")
+    setQuestion(quesList[quesIndex])
     console.log(position)
     position === 'top' ? (setIsTop(true)) : (setIsTop(false))
   }, [])
@@ -102,11 +106,11 @@ function Graffiti({ history }) {
         <img className='round' src={round} alt="round"/>
         <div className='remaining'>{remainingTime}</div>
       </div>
-
+      <div className='draw-ques'>「{question}」的{isTop ? '上' : '下'}半部</div>
       <img className='line' src={line} alt="line"/>
 
       <div className={isTop ? 'draw-box' : 'draw-box reversed-box'}>
-        <canvas className={isTop ? '' : 'bottom-canvas'} ref={canvasRef} id='canvas' width={isTop ? "280" : "280"} height={isTop ? "180" : "170"}/>
+        <canvas className={isTop ? '' : 'bottom-canvas'} ref={canvasRef} id='canvas' width="300" height={isTop ? "170" : "160"}/>
         <img className={isTop ? 'img-for-top': 'img-for-bottom'} src={grey} alt="grey"/>
       </div>
 
