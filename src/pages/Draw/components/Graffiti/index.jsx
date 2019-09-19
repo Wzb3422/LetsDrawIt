@@ -10,7 +10,7 @@ function Graffiti({ history }) {
 
   const canvasRef = React.createRef()
 
-  const [remainingTime, setRemainingTime] = useState(30)
+  const [remainingTime, setRemainingTime] = useState(300)
   const [isTop, setIsTop] = useState(true)
 
   // canvas
@@ -18,13 +18,13 @@ function Graffiti({ history }) {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d');
     let width = canvas.width, height = canvas.height;
-    if (window.devicePixelRatio) {
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-      canvas.height = height * window.devicePixelRatio;
-      canvas.width = width * window.devicePixelRatio;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-    }
+    // if (window.devicePixelRatio) {
+    //   canvas.style.width = width + "px";
+    //   canvas.style.height = height + "px";
+    //   canvas.height = height * window.devicePixelRatio;
+    //   canvas.width = width * window.devicePixelRatio;
+    //   ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    // }
     canvas.ontouchstart = function(e) {
       e.preventDefault()
       let offsetX = canvas.offsetLeft
