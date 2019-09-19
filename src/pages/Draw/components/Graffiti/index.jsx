@@ -63,8 +63,10 @@ function Graffiti({ history }) {
 
   // position
   useEffect(() => {
-    console.log()
-    window.location.pathname.split('?')
+    const params = (new URL(document.location)).searchParams
+    const position = params.get("position")
+    console.log(position)
+    position === 'top' ? (setIsTop(true)) : (setIsTop(false))
   }, [])
 
   const changeColor = (newColor, lineWidth = 3) => {
@@ -104,7 +106,7 @@ function Graffiti({ history }) {
       <img className='line' src={line} alt="line"/>
 
       <div className={isTop ? 'draw-box' : 'draw-box reversed-box'}>
-        <canvas className={!isTop && 'bottom-canvas'} ref={canvasRef} id='canvas' width={isTop ? "280" : "280"} height={isTop ? "180" : "170"}/>
+        <canvas className={isTop ? '' : 'bottom-canvas'} ref={canvasRef} id='canvas' width={isTop ? "280" : "280"} height={isTop ? "180" : "170"}/>
         <img className={isTop ? 'img-for-top': 'img-for-bottom'} src={grey} alt="grey"/>
       </div>
 
