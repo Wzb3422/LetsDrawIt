@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import io from 'socket.io-client'
 import EntryItem from './components/EntryItem'
 import { get } from '../../http'
 import logo from './images/logo.png'
@@ -10,9 +11,22 @@ import img3 from './images/3.png'
 import img4 from './images/4.png'
 import img5 from './images/5.png'
 import text from './images/text.png'
+import nextTurn from './images/nextTurn.png'
 import './style.css'
 
 function Rank() {
+
+  const [socket, setSocket] = useState(null)
+
+  useEffect(() => {
+    const ws = io('http://localhost:3000')
+    setSocket(io)
+  }, [])
+
+  const toNextTurn = () => {
+    console.log('next turn')
+    socket.emit('hello', 'world')
+  }
 
   const numImgArr = [img0, img1, img2, img3, img4, img5]
 
@@ -57,6 +71,7 @@ function Rank() {
           })
         }
       </div>
+      <img className='nextTurn' src={nextTurn}  onClick={toNextTurn} alt="nextTurn"/>
     </Fragment>
   )
 }

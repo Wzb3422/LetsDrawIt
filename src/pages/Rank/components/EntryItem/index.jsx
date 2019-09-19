@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { post } from "../../../../http";
 import heart from './images/heart.png'
 import 'animate.css/animate.min.css'
 import './item-style.css'
@@ -16,6 +17,14 @@ function EntryItem({ item, setRemainingLikes, remainingLikes }) {
 
     if (isActivated) {
       // Liked
+      post('/api/like', {
+        id: item.id,
+        num: -1
+      }).then(res => {
+        console.log(res)
+      }).catch(err => {
+        throw new Error(err)
+      })
       setRemainingLikes(remainingLikes + 1)
       setIsActivated(false)
     } else {
