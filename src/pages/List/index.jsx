@@ -8,7 +8,7 @@ const ListItem = lazy(() => import('./ListItem/index.jsx'))
 
 const List = () => {
 
-  const [socket, setSocket] = useState(null)
+  // const [socket, setSocket] = useState(null)
   const [ranksList, setRanksList] = useState([])
 
   // xhr
@@ -51,7 +51,6 @@ const List = () => {
         <Suspense fallback={<div>Loading...</div>}>
           {
             ranksList.map((item, index) => {
-              console.log(item)
               if (index < 12) {
                 return (
                   <ListItem key={index} item={item}/>

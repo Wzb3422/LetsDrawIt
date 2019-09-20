@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
+import Item from './components/EntryItem'
 import webSocket from 'socket.io-client'
+import { get } from '../../http'
 import title from './images/title.png'
 import one from './images/1.png'
 import two from './images/2.png'
@@ -10,6 +12,9 @@ import './rank-style.css'
 function Rank() {
 
   const [socket, setSocket] = useState(null)
+  const [picList, setPicList] = useState([])
+
+  const staticPic = [one, two, three]
 
   useEffect(() => {
     setSocket(webSocket('http://101.132.107.146'))
@@ -38,22 +43,26 @@ function Rank() {
     })
   }
 
+  useEffect(() => {
+    get('/api/like/rank').then(res => {
+      console.log(res.data.pictures_data)
+      setPicList(res.data.pictures_data)
+    }).catch(err => {
+      throw new Error(err)
+    })
+  }, [])
+
   return (
     <div className='rank-container'>
       <img className='rank-title' src={title} alt=""/>
       <div className='rank-heroes'>
-        <div className='rank-box'>
-          <img className='rank-crown' src={two} alt=""/>
-          <div className='rank-outline'></div>
-        </div>
-        <div className='rank-box'>
-          <img className='rank-crown' src={one} alt=""/>
-          <div className='rank-outline'></div>
-        </div>
-        <div className='rank-box'>
-          <img className='rank-crown' src={three} alt=""/>
-          <div className='rank-outline'></div>
-        </div>
+        {
+          picList.map((item, index) => {
+            return (
+              <Item item={item} pic={staticPic[index]}/>
+            )
+          })
+        }
       </div>
       <img className='next-turn' src={nextTurn} onClick={toNextTurn} alt="nextTurn"/>
     </div>
