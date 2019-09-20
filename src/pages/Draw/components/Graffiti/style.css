@@ -132,7 +132,17 @@
   top: 176px;
 }
 
-.xjy {
+#doll {
   background: url("./images/xjy.png");
+  background-size: 100% 100%;
+}
+
+#cat {
+  background: url("./images/cat.png");
+  background-size: 100% 100%;
+}
+
+#coder {
+  background: url("./images/coder.png");
   background-size: 100% 100%;
 }

@@ -11,11 +11,13 @@ import './style.css'
 function Graffiti({ history }) {
 
   const canvasRef = React.createRef()
-  const quesList = ['小家园', '小家园', '小家园', '小家园']
+  const quesList = ['小家园', '程序猿', '猫']
+  const idList = ['doll', 'coder', 'cat']
 
-  const [remainingTime, setRemainingTime] = useState(300)
+  const [remainingTime, setRemainingTime] = useState(30)
   const [isTop, setIsTop] = useState(true)
   const [question, setQuestion] = useState(0)
+  const [quesId, setQuesId] = useState(0)
 
   // canvas
   useEffect(() => {
@@ -38,8 +40,8 @@ function Graffiti({ history }) {
       ctx.beginPath();
       ctx.moveTo(x, y);
       canvas.ontouchmove = function(e){
-        let targetX = e.touches[0].clientX - offsetX
-        let targetY = e.touches[0].clientY - offsetY
+        let targetX = e.touches[0].clientX - offsetX + 6
+        let targetY = e.touches[0].clientY - offsetY + 6
         ctx.lineWidth = 3;
         ctx.lineTo(targetX,targetY);
         ctx.stroke();
@@ -70,7 +72,8 @@ function Graffiti({ history }) {
     const params = (new URL(document.location)).searchParams
     const position = params.get("position")
     const quesIndex = params.get("quesId")
-    setQuestion(quesList[quesIndex])
+    setQuestion(quesList[quesIndex - 1])
+    setQuesId(quesIndex - 1)
     console.log(position)
     position === 'top' ? (setIsTop(true)) : (setIsTop(false))
   }, [])
@@ -85,7 +88,7 @@ function Graffiti({ history }) {
     let isToClear = window.confirm('你确定清除画布吗？')
     if (isToClear) {
       const ctx = canvasRef.current.getContext('2d')
-      ctx.clearRect(0, 0, canvas.height, canvas.width)
+      ctx.clearRect(0, 0, 3000, 3000)
     }
   }
 
@@ -112,7 +115,7 @@ function Graffiti({ history }) {
       <div className='draw-ques'>「{question}」的{isTop ? '上' : '下'}半部</div>
       <img className='line' src={line} alt="line"/>
 
-      <div className={isTop ? 'draw-box xjy' : 'draw-box reversed-box xjy'}>
+      <div className={isTop ? 'draw-box xjy' : 'draw-box reversed-box xjy'} id={idList[quesId]}>
         <canvas className={isTop ? '' : 'bottom-canvas'} ref={canvasRef} id='canvas' width="300" height={isTop ? "170" : "160"}/>
         <img className={isTop ? 'img-for-top': 'img-for-bottom'} src={grey} alt="grey"/>
       </div>
@@ -128,10 +131,9 @@ function Graffiti({ history }) {
         </ul>
         <div className='action'>
           <div className='eraser' onClick={() => changeColor('#fff', 5)}></div>
-          <div className='redo' onClick={saveCanvas}></div>
+          <div className='redo' onClick={clearCanvas}></div>
         </div>
       </div>
-
     </Fragment>
 
   )
