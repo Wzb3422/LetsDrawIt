@@ -18,10 +18,10 @@ function Rank() {
 
   const [socket, setSocket] = useState(null)
 
-  // useEffect(() => {
-  //   const ws = io('http://localhost:3000')
-  //   setSocket(io)
-  // }, [])
+  useEffect(() => {
+    const ws = io('http://localhost:8002')
+    setSocket(io)
+  }, [])
 
   const toNextTurn = () => {
     console.log('next turn')

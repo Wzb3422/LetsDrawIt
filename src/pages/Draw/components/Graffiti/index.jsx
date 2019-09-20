@@ -4,14 +4,16 @@ import { post } from "../../../../http";
 import grey from './images/grey.png'
 import round from './images/round.png'
 import line from './images/line.png'
+import one from './images/1.png'
+import xjy from './images/xjy.png'
 import './style.css'
 
 function Graffiti({ history }) {
 
   const canvasRef = React.createRef()
-  const quesList = ['一号', '二号', '三号', '四号']
+  const quesList = ['小家园', '小家园', '小家园', '小家园']
 
-  const [remainingTime, setRemainingTime] = useState(30)
+  const [remainingTime, setRemainingTime] = useState(300)
   const [isTop, setIsTop] = useState(true)
   const [question, setQuestion] = useState(0)
 
@@ -104,12 +106,13 @@ function Graffiti({ history }) {
 
       <div className='header'>
         <img className='round' src={round} alt="round"/>
+        <img className='round-num' src={one} alt="one"/>
         <div className='remaining'>{remainingTime}</div>
       </div>
       <div className='draw-ques'>「{question}」的{isTop ? '上' : '下'}半部</div>
       <img className='line' src={line} alt="line"/>
 
-      <div className={isTop ? 'draw-box' : 'draw-box reversed-box'}>
+      <div className={isTop ? 'draw-box xjy' : 'draw-box reversed-box xjy'}>
         <canvas className={isTop ? '' : 'bottom-canvas'} ref={canvasRef} id='canvas' width="300" height={isTop ? "170" : "160"}/>
         <img className={isTop ? 'img-for-top': 'img-for-bottom'} src={grey} alt="grey"/>
       </div>
