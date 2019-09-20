@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import end from './images/end.png'
-import io from 'socket.io-client'
 import './list-style.css'
 
 const ListItem = lazy(() => import('./ListItem/index.jsx'))
@@ -44,8 +44,6 @@ const List = () => {
      })
   }, [])
 
-  const arr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1,1 ,1 ,1 ,1 ,1 , 1, 1, 1,1 ,1 ,1 ,1 ,11, 1, 1,1 ,1 ,1 ,1 ,1 ,1]
-
   return (
     <div className='list-container'>
       <div className='list-title hugo'>Pick 你心中的 「优秀画作」</div>
@@ -54,14 +52,20 @@ const List = () => {
           {
             ranksList.map((item, index) => {
               console.log(item)
-              return (
-                <ListItem key={index} item={item}/>
-              )
+              if (index < 12) {
+                return (
+                  <ListItem key={index} item={item}/>
+                )
+              }
             })
           }
         </Suspense>
       </div>
-      <img className='end-button' src={end} alt="end"/>
+      <div className='end-button'>
+        <Link to='/rank'>
+          <img className='end-button' src={end} alt="end"/>
+        </Link>
+      </div>
     </div>
   )
 }
