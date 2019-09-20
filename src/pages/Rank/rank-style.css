@@ -1,5 +1,5 @@
 .rank-container {
-  height: 700px;
+  height: 600px;
   width: 1200px;
   margin: 0 auto;
   padding-top: 66px;
@@ -16,4 +16,31 @@
 .rank-heroes {
   height: 550px;
   width: 1200px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.rank-box {
+  width: 300px;
+  height: 450px;
+}
+
+.rank-box:nth-child(2n) {
+  margin-bottom: 50px;
+}
+
+.rank-crown {
+  height: 50px;
+}
+
+.rank-outline {
+  width: 300px;
+  height: 400px;
+  background: url("./images/outline.png") no-repeat;
+  background-size: contain;
+}
+
+.next-turn {
+  width: 240px;
 }
