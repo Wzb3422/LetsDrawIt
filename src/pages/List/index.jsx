@@ -27,20 +27,18 @@ const List = () => {
       window.localStorage.setItem("token", res.data.token)
     })
       .then(() => {
-        setInterval(() => {
-          axios({
-            url: 'http://101.132.107.146/api/like/rank',
-            method: 'get',
-            headers: {
-              Authorization: window.localStorage.getItem("token")
-            }
-          }).then(res => {
-            console.log(res.data.data.pictures_data)
-            setRanksList(res.data.data.pictures_data)
-          }).catch(err => {
-            throw new Error(err)
-          })
-        }, 1200)
+        axios({
+          url: 'http://101.132.107.146/api/like/rank',
+          method: 'get',
+          headers: {
+            Authorization: window.localStorage.getItem("token")
+          }
+        }).then(res => {
+          console.log(res.data.data.pictures_data)
+          setRanksList(res.data.data.pictures_data)
+        }).catch(err => {
+          throw new Error(err)
+        })
      })
   }, [])
 
