@@ -9,20 +9,40 @@ const ListItem = lazy(() => import('./ListItem/index.jsx'))
 const List = () => {
 
   const [socket, setSocket] = useState(null)
-
-  // websocket
-  useEffect(() => {
-    setSocket(io('http://localhost:3000'))
-  }, [])
+  const [ranksList, setRanksList] = useState([])
 
   // xhr
   useEffect(() => {
-    axios.get('http://101.132.107.146/api/like/rank').then(res => {
-      console.log(res)
-    }).catch(err => {
-      throw new Error(err)
+
+    const loginPromise = new Promise(resolve => {
+      axios.post('http://101.132.107.146/api/auth', {
+        student_id: 'test',
+        name: 'test'
+      }).then(res => {
+        resolve(res.data)
+      })
     })
-  })
+
+    loginPromise.then(res => {
+      window.localStorage.setItem("token", res.data.token)
+    })
+      .then(() => {
+        setInterval(() => {
+          axios({
+            url: 'http://101.132.107.146/api/like/rank',
+            method: 'get',
+            headers: {
+              Authorization: window.localStorage.getItem("token")
+            }
+          }).then(res => {
+            console.log(res.data.data.pictures_data)
+            setRanksList(res.data.data.pictures_data)
+          }).catch(err => {
+            throw new Error(err)
+          })
+        }, 1200)
+     })
+  }, [])
 
   const arr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1,1 ,1 ,1 ,1 ,1 , 1, 1, 1,1 ,1 ,1 ,1 ,11, 1, 1,1 ,1 ,1 ,1 ,1 ,1]
 
@@ -32,9 +52,10 @@ const List = () => {
       <div className='list-box'>
         <Suspense fallback={<div>Loading...</div>}>
           {
-            arr.map((item, index) => {
+            ranksList.map((item, index) => {
+              console.log(item)
               return (
-                <ListItem key={index}/>
+                <ListItem key={index} item={item}/>
               )
             })
           }
